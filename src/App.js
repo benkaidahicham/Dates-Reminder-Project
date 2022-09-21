@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import {Button, Container ,Row ,Col} from 'react-bootstrap';
+import Datescount from './components/Datescount';
+import Dateslist from './components/Dateslist';
+import Datesaction from './components/Datesactoin';
+import React ,{ useState } from 'react';
+import { person } from './Data';
 
 function App() {
+  const [personData, setperson] = useState(person);
+  const onDelete=()=>{
+    setperson([])
+  }
+  const onVew=()=>{
+    setperson(person)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="font color-body">
+      <Container className='py-5'>
+        <Datescount person={personData}/>
+        <Dateslist person={personData}/>
+        <Datesaction DeleteData={onDelete} VewData={onVew}/>
+        
+      </Container>
     </div>
   );
 }
